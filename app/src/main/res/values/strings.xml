@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Weather Application</string>
+    <string name="location_permission_denided">Couldn\'t retrieve location. Location access is needed for give you the accurate and better weather details based on your location. Make sure to grand permission and enable GPS.</string>
 </resources>
