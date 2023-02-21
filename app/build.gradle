@@ -39,12 +39,15 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.2.0'
+        kotlinCompilerExtensionVersion compose_version
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
+    }
+    configurations.implementation {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
     }
 }
 

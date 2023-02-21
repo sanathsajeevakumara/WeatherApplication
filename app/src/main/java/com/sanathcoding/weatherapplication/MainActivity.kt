@@ -1,43 +1,43 @@
 package com.sanathcoding.weatherapplication
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import com.sanathcoding.weatherapplication.presentation.WeatherScreen
+import com.sanathcoding.weatherapplication.presentation.WeatherViewModel
 import com.sanathcoding.weatherapplication.ui.theme.WeatherApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: WeatherViewModel by viewModels()
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) {
+            viewModel.loadWeatherInfo()
+        }
+        permissionLauncher.launch(
+            arrayOf(
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
         setContent {
             WeatherApplicationTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                WeatherScreen(viewModel = viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    WeatherApplicationTheme {
-        Greeting("Android")
     }
 }
