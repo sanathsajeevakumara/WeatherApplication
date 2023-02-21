@@ -18,4 +18,4 @@ Clean Code Weather App in Android Studio (Jetpack Compose)
 #### Note
 
 Issue - Duplicate class kotlin.time.jdk8.DurationConversionsJDK8Kt found in modules kotlin-stdlib-1.8.0 (org.jetbrains.kotlin:kotlin-stdlib:1.8.0) and kotlin-stdlib-jdk8-1.7.0 (org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0)
-Answer - https://stackoverflow.com/questions/75274720/a-failure-occurred-while-executing-appcheckdebugduplicateclasses
+* Answer - https://stackoverflow.com/questions/75274720/a-failure-occurred-while-executing-appcheckdebugduplicateclasses
