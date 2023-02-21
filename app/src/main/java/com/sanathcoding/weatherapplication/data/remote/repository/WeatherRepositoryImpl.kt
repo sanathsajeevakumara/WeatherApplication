@@ -1,9 +1,10 @@
-package com.sanathcoding.weatherapplication.domain.repository
+package com.sanathcoding.weatherapplication.data.remote.repository
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.sanathcoding.weatherapplication.data.remote.WeatherApi
 import com.sanathcoding.weatherapplication.data.remote.mapper.toWeatherInfo
+import com.sanathcoding.weatherapplication.domain.repository.WeatherRepository
 import com.sanathcoding.weatherapplication.domain.util.Resource
 import com.sanathcoding.weatherapplication.domain.weather_type.WeatherInfo
 import retrofit2.HttpException
