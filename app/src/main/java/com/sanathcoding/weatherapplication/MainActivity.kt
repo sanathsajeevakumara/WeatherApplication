@@ -1,5 +1,6 @@
 package com.sanathcoding.weatherapplication
 
+import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -30,8 +31,8 @@ class MainActivity : ComponentActivity() {
         }
         permissionLauncher.launch(
             arrayOf(
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
             )
         )
         setContent {

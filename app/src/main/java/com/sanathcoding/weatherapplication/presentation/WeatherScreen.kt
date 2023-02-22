@@ -28,19 +28,20 @@ fun WeatherScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(DarkBlue)
-        ) {
-            WeatherCard(weatherState = viewModel.state, backgroundColor = DeepBlue)
-            Spacer(modifier = Modifier.height(16.dp))
-            WeatherForecast(weatherState = viewModel.state)
+        viewModel.state.weatherInfo?.currentWeatherData?.let {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(DarkBlue)
+            ) {
+                WeatherCard(weatherState = viewModel.state, backgroundColor = DeepBlue)
+                Spacer(modifier = Modifier.height(16.dp))
+                WeatherForecast(weatherState = viewModel.state)
+            }
         }
         if (viewModel.state.isLoading) CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center)
         )
-
         viewModel.state.error?.let { error ->
             Card(
                 colors = CardDefaults.cardColors(containerColor = DeepBlue),

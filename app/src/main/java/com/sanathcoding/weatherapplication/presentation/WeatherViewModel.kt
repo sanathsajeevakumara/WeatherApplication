@@ -11,6 +11,7 @@ import com.sanathcoding.weatherapplication.domain.location.LocationTracker
 import com.sanathcoding.weatherapplication.domain.repository.WeatherRepository
 import com.sanathcoding.weatherapplication.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,16 +20,22 @@ class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val locationTracker: LocationTracker,
     private val application: Application
-): ViewModel() {
+) : ViewModel() {
 
     var state by mutableStateOf(WeatherState())
         private set
 
     fun loadWeatherInfo() {
-        viewModelScope.launch {
-            state = state.copy(isLoading = true, error = null)
+        viewModelScope.launch(Dispatchers.IO) {
+            state = state.copy(
+                isLoading = true,
+                error = null
+            )
             locationTracker.getCurrentLocation()?.let { location ->
-                when (val result = weatherRepository.getWeatherData(location.latitude, location.longitude)) {
+                val result = weatherRepository.getWeatherData(
+                    location.latitude, location.longitude
+                )
+                when (result) {
                     is Resource.Success -> {
                         state = state.copy(
                             weatherInfo = result.data,
