@@ -1,6 +1,6 @@
 package com.sanathcoding.weatherapplication.di
 
-import com.sanathcoding.weatherapplication.data.remote.location.CurrentLocationTracker
+import com.sanathcoding.weatherapplication.data.remote.location.CurrentLocationClient
 import com.sanathcoding.weatherapplication.domain.location.LocationClient
 import dagger.Binds
 import dagger.Module
@@ -14,6 +14,6 @@ abstract class LocationModule {
 
     @Binds
     @Singleton
-    abstract fun bindLocationTracker(currentLocationTracker: CurrentLocationTracker): LocationClient
+    abstract fun bindLocationTracker(currentLocationTracker: CurrentLocationClient): LocationClient
 
 }
