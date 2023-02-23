@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sanathcoding.weatherapplication.R
-import com.sanathcoding.weatherapplication.domain.location.LocationTracker
+import com.sanathcoding.weatherapplication.domain.location.LocationClient
 import com.sanathcoding.weatherapplication.domain.repository.WeatherRepository
 import com.sanathcoding.weatherapplication.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
-    private val locationTracker: LocationTracker,
+    private val locationTracker: LocationClient,
     private val application: Application
 ) : ViewModel() {
 
